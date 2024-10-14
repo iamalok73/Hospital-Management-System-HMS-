@@ -1,0 +1,35 @@
+<!-- templates/main/patient_list.html -->
+{% extends 'main/base.html' %}
+
+{% block title %}Patient List{% endblock %}
+
+{% block content %}
+    <div class="patient-list-container">
+        <h2>Patient List</h2>
+        <form method="GET">
+            {{ myFilter.form.as_p }}
+            <button type="submit">Filter</button>
+        </form>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Doctor</th>
+                    <th>Bed Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                <tr>
+                    <td>{{ patient.name }}</td>
+                    <td>{{ patient.status }}</td>
+                    <td>{{ patient.doctor }}</td>
+                    <td>{{ patient.bed_num.bed_number }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

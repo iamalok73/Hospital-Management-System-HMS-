@@ -1,0 +1,31 @@
+<!-- templates/main/dashboard.html -->
+{% extends 'main/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <div class="dashboard-container">
+        <h2>Dashboard</h2>
+        <p>Total Patients: {{ patient_count }}</p>
+        <p>Recovered Patients: {{ recovered_count }}</p>
+        <p>Deceased Patients: {{ deceased_count }}</p>
+        <p>Beds Available: {{ beds_available }}</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Bed Number</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bed in beds %}
+                <tr>
+                    <td>{{ bed.bed_number }}</td>
+                    <td>{{ bed.occupied|yesno:"Occupied,Available" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

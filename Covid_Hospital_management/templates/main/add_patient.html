@@ -1,0 +1,59 @@
+<!-- templates/main/add_patient.html -->
+{% extends 'main/base.html' %}
+
+{% block title %}Add Patient{% endblock %}
+
+{% block content %}
+    <div class="add-patient-form">
+        <h2>Add New Patient</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phone_num">Phone Number:</label>
+            <input type="text" id="phone_num" name="phone_num" required>
+
+            <label for="patient_relative_name">Relative Name:</label>
+            <input type="text" id="patient_relative_name" name="patient_relative_name" required>
+
+            <label for="patient_relative_contact">Relative Contact:</label>
+            <input type="text" id="patient_relative_contact" name="patient_relative_contact" required>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" required></textarea>
+
+            <label for="symptoms">Symptoms:</label>
+            <textarea id="symptoms" name="symptoms" required></textarea>
+
+            <label for="prior_ailments">Prior Ailments:</label>
+            <textarea id="prior_ailments" name="prior_ailments"></textarea>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="Admitted">Admitted</option>
+                <option value="Recovered">Recovered</option>
+                <option value="Deceased">Deceased</option>
+            </select>
+
+            <label for="bed_num">Bed Number:</label>
+            <select id="bed_num" name="bed_num">
+                {% for bed in beds %}
+                    <option value="{{ bed.bed_number }}">{{ bed.bed_number }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="doctor">Doctor:</label>
+            <select id="doctor" name="doctor">
+                {% for doctor in doctors %}
+                    <option value="{{ doctor.name }}">{{ doctor.name }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Add Patient</button>
+        </form>
+    </div>
+{% endblock %}
